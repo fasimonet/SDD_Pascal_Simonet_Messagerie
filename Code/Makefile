@@ -1,39 +1,72 @@
-# compilateur
-CC = gcc
-
-# options
-CFLAGS = -Wall -Wextra -g -O2
-
-#LDFLAGS = -lm -L
-
-#liste des fichiers objets
-OBJ = LCH.o outil.o date.o manipulation_LCH.o
-
+#===============================
+# EXECUTABLES A COMPILER
+#===============================
 all: outil manipulation_LCH
 
-#règle de production finale
-outil: 	$(OBJ)
-		$(CC) $(OBJ) -o outil
+#===============================
+# COMPILATEUR
+#===============================
+CC = gcc
 
-manipulation_LCH: 	$(OBJ)
-					$(CC) $(OBJ) -o manipulation_LCH
+#===============================
+# OPTIONS DE COMPILATION
+#===============================
+CFLAGS = -Wall -Wextra -g -O2
 
-#règle de production pour chaque fichier
+#===============================
+# FICHIERS OBJETS
+#===============================
+
+# fichiers .o communs a tous les executables
+COMMON_OBJ = LCH.o date.o
+
+# fichier .o relatif a l'executable "manipulation_LCH"
+MANIP_OBJ = manipulation_LCH.o
+
+# fichier .o relatif a l'executable "outil"
+TOOL_OBJ = outil.o
+
+#===============================
+# REGLES DE PRODUCTION FINALES
+#===============================
+
+# production executable "outil"
+outil: 	$(COMMON_OBJ) $(TOOL_OBJ)
+		$(CC) $(COMMON_OBJ) $(TOOL_OBJ) -o outil
+
+# production executable "manipulation_LCH"
+manipulation_LCH: 	$(COMMON_OBJ) $(MANIP_OBJ)
+					$(CC) $(COMMON_OBJ) $(MANIP_OBJ) -o manipulation_LCH
+
+#===============================
+# REGLE DE PRODUCTION DES .o
+#===============================
+
+# production fichier objet "LCH.o"
 LCH.o: 	LCH.c
 			$(CC) -c LCH.c $(CFLAGS)
 
+# production fichier objet "outil.o"
 outil.o: 	outil.c
 			$(CC) -c outil.c $(CFLAGS)
 
+# production fichier objet "date.o"
 date.o :	date.c
 			$(CC) -c date.c $(CFLAGS)
 
+# production fichier objet "manipulation_LCH.o"
 manipulation_LCH.o:		manipulation_LCH.c
 						$(CC) -c manipulation_LCH.c $(CFLAGS)
 
-clean: 
-			rm -f $(OBJ)
+#===============================
+# NETTOYAGE DES .o
+#===============================
+clean:
+			@rm -f *.o
 
+#===============================
+# NETTOYAGE DES EXECUTABLES
+#===============================
 mrproper:
 			rm -f outil
 			rm -f manipulation_LCH
