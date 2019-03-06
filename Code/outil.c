@@ -26,7 +26,7 @@ int main(int argc, char** argv)
             afficher_LCH(*tete);
         }
     }
-    sauv_fichier("fic4.txt", tete);
+    //sauv_fichier("fic4.txt", tete);
     //afficher_LCH(*tete);
 
     recuperer_date_courante();

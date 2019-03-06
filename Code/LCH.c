@@ -294,6 +294,7 @@ void supprimer_messages_obsoletes_LCH(message_t** tete)
         {
             supprimer_maillon_LCH(prec);
         }
+
         prec = &cour->suiv;
         cour = cour->suiv;
     }
