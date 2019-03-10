@@ -37,7 +37,7 @@ message_t* creer_maillon_LCH(int date_deb, int date_fin, char* texte)
         if (message->texte == NULL)
         {
             printf("Pb allocation memoire tableau texte\n");
-            free(message); // ???
+            free(message);
             message = NULL;
         }
         else 

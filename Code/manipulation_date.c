@@ -1,6 +1,6 @@
 #include "date.h"
 
-int main
+int main()
 {
     // teste des fonctions de récupération et d'affichage de date
     int x;
