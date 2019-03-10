@@ -14,7 +14,7 @@ typedef struct message
     struct message* suiv;
 } message_t;
 
-// Gestion de LCH en elle-même
+// Gestion de LCH en elle-meme
 message_t* creer_maillon_LCH(int, int, char*);
 void supprimer_maillon_LCH(message_t**);
 void afficher_maillon_LCH(message_t);

@@ -3,9 +3,9 @@
 /* ---------------------------------------------------------------------------------------------------- */
 /* recuperer_date_courante       Recupere la date courante en la mettant au bon format                  */
 /*                                                                                                      */
-/* En entrée: Aucune entrée                                                                             */                                 
+/* En entree: Aucune entree                                                                             */                                 
 /*                                                                                                      */      
-/* En sortie: La date courante correctement formattée                                                   */
+/* En sortie: La date courante correctement formattee                                                   */
 /* ---------------------------------------------------------------------------------------------------- */
 int recuperer_date_courante()
 {
@@ -30,7 +30,7 @@ int recuperer_date_courante()
 /* ---------------------------------------------------------------------------------------------------- */
 /* afficher_date_courante                             Affiche la date courante                          */
 /*                                                                                                      */
-/* En entrée: Aucune entrée                                                                             */                              
+/* En entree: Aucune entree                                                                             */                              
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
 /* ---------------------------------------------------------------------------------------------------- */
