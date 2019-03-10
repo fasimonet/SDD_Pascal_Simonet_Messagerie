@@ -406,6 +406,19 @@ void liberer_LCH(message_t* tete)
 /*      motif le motif à respecter                                                                      */
 /*                                                                                                      */
 /* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On initialise un compteur de message à 0                                                        */
+/*      On parcours la liste                                                                            */
+/*          Pour chaque élément on appelle la fonction A COMPLETER FABIEN sur le motif en entrée et l'élément*/
+/*          Si elle renvoie vrais on incrémnte le compteur et on affiche le message                     */
+/*      Si le compteur vaut 0 on affiche qu'aucun message ne contient le motif                          */
+/*                                                                                                      */
+/* Lexique                                                                                              */
+/*      cour : pointeur sur les maillons de la liste initialise sur le premier element. Il sert à       */
+/*      parcourir la liste                                                                              */
+/*      nb : entier servant à compter les messages et nous permet d'afficher le message spécifiant      */
+/*      qu'aucun message ne contient le motif                                                           */
 /* ---------------------------------------------------------------------------------------------------- */
 void afficher_si_motif_LCH(message_t* tete, char* motif)
 {
