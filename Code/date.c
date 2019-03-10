@@ -1,6 +1,16 @@
 #include "date.h"
 
 /* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : date.c                                                                              */
+/* Date de creation : 27/02/2018                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : manipuler les dates                                                                       */
+/* Fonctions :                                                                                          */
+/*  - recuperer_date_courante                                                                           */
+/*  - afficher_date_courante                                                                            */
+/* ---------------------------------------------------------------------------------------------------- */
+
+/* ---------------------------------------------------------------------------------------------------- */
 /* recuperer_date_courante       Recupere la date courante en la mettant au bon format                  */
 /*                                                                                                      */
 /* En entree: Aucune entree                                                                             */                                 

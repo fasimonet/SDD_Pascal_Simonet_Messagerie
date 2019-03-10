@@ -35,9 +35,9 @@ int main(int argc, char** argv)
     //supprimer_maillon(&(tete->suiv));
     afficher_LCH(tete);
 
-    afficher_si_motif_LCH(tete, "Ca va ?");
+    afficher_messages_si_motif(tete, "Ca va ?");
 
-    afficher_si_motif_LCH(tete, "HHH");
+    afficher_messages_si_motif(tete, "HHH");
 
     //liberer_LCH(tete);
     return 0;

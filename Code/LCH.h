@@ -1,3 +1,10 @@
+/* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : LCH.h                                                                               */
+/* Date de creation : 27/02/2018                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : repertorier les prototypes des fonctions de manipulation de listes chainees               */
+/* ---------------------------------------------------------------------------------------------------- */
+
 #ifndef LCH_H
 #define LCH_H
 

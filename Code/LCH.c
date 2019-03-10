@@ -2,33 +2,41 @@
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* Nom du fichier : LCH.c                                                                               */
-/* Date de création : 27/02/2018                                                                        */
+/* Date de creation : 27/02/2018                                                                        */
 /* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
 /* Objectif : manipuler les listes chainees                                                             */
+/* Fonctions :                                                                                          */
+/*  - creer_maillon_LCH                                                                                 */
+/*  - afficher_maillon_LCH                                                                              */
+/*  - afficher_LCH                                                                                      */
+/*  - rech_prec_triee_LCH                                                                               */
+/*  - adj_cell_LCH                                                                                      */
+/*  - supprimer_maillon_LCH                                                                             */
+/*  - liberer_LCH                                                                                       */
 /* ---------------------------------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* creer_maillon                   Crée un maillon message_t                                            */
+/* creer_maillon_LCH                   Cree un maillon message_t                                        */
 /*                                                                                                      */
-/* En entrée:                                                                                           */
-/*      date_deb Un entier représentant la date de début de validité du message                         */
-/*      date_fin Un entier représentant la date de fin de validité du message                           */
-/*      texte Une chaine de caractère représentant le texte du message                                  */
+/* En entree:                                                                                           */
+/*      date_deb Un entier representant la date de debut de validite du message                         */
+/*      date_fin Un entier representant la date de fin de validite du message                           */
+/*      texte Une chaine de caractere representant le texte du message                                  */
 /*                                                                                                      */      
-/* En sortie: Un pointeur vers le maillon nouvellement créé                                             */
+/* En sortie: Un pointeur vers le maillon nouvellement cree                                             */
 /*                                                                                                      */
 /* Principe:                                                                                            */
-/*      on définie un pointeur sur une structure de type message_t à laquelle on alloue la mémoire      */ 
-/*      nécéssaire                                                                                      */
-/*      si il n'y a pas de problème d'allocation, on alloue la mémoire nécéssaire à l'espace contenant  */
+/*      on definit un pointeur sur une structure de type message_t a laquelle on alloue la memoire      */ 
+/*      necessaire                                                                                      */
+/*      si il n'y a pas de probleme d'allocation, on alloue la memoire necessaire a l'espace contenant  */
 /*      le texte du message                                                                             */
-/*      si il n'y a pas de problème d'allocation on rentre dans la structure les valeurs des paramètres */
-/*      en entrée                                                                                       */
-/*      sinon on libere l'espace mémoire                                                                */
+/*      si il n'y a pas de probleme d'allocation on rentre dans la structure les valeurs des parametres */
+/*      en entree                                                                                       */
+/*      sinon on libere l'espace memoire                                                                */
 /*                                                                                                      */
 /* Lexique:                                                                                             */
-/*      taille_txt : entier donnant la longueure du message (nombre de caractère)                       */
-/*      message : pointeur vers une structure de type message_t contenant le message créé               */
+/*      taille_txt : entier donnant la longueur du message (nombre de caracteres)                       */
+/*      message : pointeur vers une structure de type message_t contenant le message cree               */
 /* ---------------------------------------------------------------------------------------------------- */
 message_t* creer_maillon_LCH(int date_deb, int date_fin, char* texte)
 {
@@ -36,14 +44,14 @@ message_t* creer_maillon_LCH(int date_deb, int date_fin, char* texte)
     message_t * message = (message_t *) malloc(sizeof(message_t));
     if (message == NULL)
     {
-        printf("Pb allocation mémoire maillon message_t\n");
+        printf("Pb allocation memoire maillon message_t\n");
     }
     else 
     {
         message->texte = (char *) malloc(sizeof(char)*taille_txt +1);
         if (message->texte == NULL)
         {
-            printf("Pb allocation mémoire tableau texte\n");
+            printf("Pb allocation memoire tableau texte\n");
             free(message); // ???
             message = NULL;
         }
@@ -60,37 +68,37 @@ message_t* creer_maillon_LCH(int date_deb, int date_fin, char* texte)
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* afficher_maillon             Affiche les champs d'un maillon message_t                               */
+/* afficher_maillon_LCH             Affiche les champs d'un maillon message_t                           */
 /*                                                                                                      */
-/* En entrée:                                                                                           */
-/*      message Le maillon à afficher                                                                   */                                 
+/* En entree:                                                                                           */
+/*      message Le maillon a afficher                                                                   */                                 
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
 /*                                                                                                      */
 /* Principe :                                                                                           */  
-/*      affiche respectivement les dates de début, de fin et le corps du message                            */
+/*      affiche respectivement les dates de debut, de fin et le corps du message                        */
 /* ---------------------------------------------------------------------------------------------------- */
 void afficher_maillon_LCH(message_t* message)
 {
-    printf("Date de début de validité du message : %d\n", message->date_deb);
-    printf("Date de fin de validité du message : %d\n", message->date_fin);
+    printf("Date de debut de validite du message : %d\n", message->date_deb);
+    printf("Date de fin de validite du message : %d\n", message->date_fin);
     printf("Corps du message :\n%s\n", message->texte);   
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* afficher_LCH                 Affiche les champs d'une LCH message_t                                  */
 /*                                                                                                      */
-/* En entrée:                                                                                           */
-/*      tete Le pointeur vers le maillon de tête de la LCH à afficher                                                    */
+/* En entree:                                                                                           */
+/*      tete Le pointeur vers le maillon de tete de la LCH a afficher                                   */
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
 /*                                                                                                      */
 /* Principe:                                                                                            */
-/*      si la liste est non vide on la parcours et on appelle la fonction afficher_maillon_LCH sur      */
-/*      chaque maillon, sinon on affiche qu'il n'y a aucin pessage                                      */
+/*      si la liste est non vide on la parcourt et on appelle la fonction afficher_maillon_LCH sur      */
+/*      chaque maillon, sinon on affiche qu'il n'y a aucun message                                      */
 /*                                                                                                      */
 /* Lexique :                                                                                            */
-/*      cour : pointeur sur les maillons de la liste initialisé sur le premier élément. Il sert à       */
+/*      cour : pointeur sur les maillons de la liste initialise sur le premier element. Il sert a       */
 /*      parcourir la liste                                                                              */
 /* ---------------------------------------------------------------------------------------------------- */
 void afficher_LCH(message_t* tete)
@@ -122,23 +130,23 @@ void afficher_LCH(message_t* tete)
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* recherche_prec_triee        Recherche le précédent d'un élément dans une LCH message_t               */
+/* recherche_prec_triee_LCH        Recherche le precedent d'un element dans une LCH message_t           */
 /*                                                                                                      */
-/* En entrée:                                                                                           */
-/*      date_deb Un entier représentant la date de début de validation du message, critère pour         */
-/* déterminer le précédent                                                                              */
-/*      tete Un pointeur sur le pointeur de la tête de la LCH                                           */                                 
+/* En entree:                                                                                           */
+/*      date_deb Un entier representant la date de debut de validation du message, critere pour         */
+/* determiner le precedent                                                                              */
+/*      tete Un pointeur sur le pointeur de la tete de la LCH                                           */                                 
 /*                                                                                                      */      
-/* En sortie: Un pointeur vers le pointeur du précédent                                                 */
+/* En sortie: Un pointeur vers le pointeur du precedent                                                 */
 /*                                                                                                      */
 /* Principe :                                                                                           */
-/*      On utilise un premier pointeur servant à parcourire la liste et un pointeur de pointeur gardant */
-/*      en mémoire l'adresse de l'élément précédent celui de l'autre pointeur                           */
+/*      On utilise un premier pointeur servant a parcourir la liste et un pointeur de pointeur gardant  */
+/*      en memoire l'adresse de l'element precedant celui de l'autre pointeur                           */
 /*                                                                                                      */
 /* Lexique:                                                                                             */
-/*      cour : pointeur sur les maillons de la liste initialisé sur le premier élément. Il sert à       */
+/*      cour : pointeur sur les maillons de la liste initialise sur le premier element. Il sert a       */
 /*      parcourir la liste                                                                              */
-/*      prec : pointeur vers le pointeur précédent                                                      */
+/*      prec : pointeur vers le pointeur precedent                                                      */
 /* ---------------------------------------------------------------------------------------------------- */
 message_t** rech_prec_triee_LCH(int date_deb, message_t** tete)
 {
@@ -154,17 +162,17 @@ message_t** rech_prec_triee_LCH(int date_deb, message_t** tete)
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* adj_cell                     Ajoute un maillon dans la LCH message_t                                 */
+/* adj_cell_LCH                     Ajoute un maillon dans la LCH message_t                             */
 /*                                                                                                      */
-/* En entrée:                                                                                           */
-/*      prec Un pointeur vers un pointeur de l'élément précédant le nouvel élément à ajouter            */
-/*      nouv Un pointeur sur le nouvel élément à ajouter                                                */                                 
+/* En entree:                                                                                           */
+/*      prec Un pointeur vers un pointeur de l'element precedant le nouvel element a ajouter            */
+/*      nouv Un pointeur sur le nouvel element a ajouter                                                */                                 
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
 /*                                                                                                      */
 /* Principe :                                                                                           */
-/*      On effectue le chainage du nouvelle élément en modifiant las valeur des pointeurs vers les      */
-/*      éléments suivants                                                                               */
+/*      On effectue le chainage du nouvel element en modifiant las valeurs des pointeurs vers les       */
+/*      elements suivants                                                                               */
 /* ---------------------------------------------------------------------------------------------------- */
 void adj_cell_LCH(message_t **prec, message_t *nouv)
 {
@@ -175,8 +183,8 @@ void adj_cell_LCH(message_t **prec, message_t *nouv)
 /* ---------------------------------------------------------------------------------------------------- */
 /* supprimer_maillon                            Supprime un maillon d'une LCH                           */
 /*                                                                                                      */
-/* En entrée:                                                                                           */
-/*      prec le pointeur vers le pointeur de l'élément à supprimer                                      */                                 
+/* En entree:                                                                                           */
+/*      prec le pointeur vers le pointeur de l'element a supprimer                                      */                                 
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
 /* ---------------------------------------------------------------------------------------------------- */
@@ -190,10 +198,10 @@ void supprimer_maillon_LCH(message_t** prec)
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* liberer_LCH                                  Libère une LCH                                          */
+/* liberer_LCH                                  Libere une LCH                                          */
 /*                                                                                                      */
-/* En entrée:                                                                                           */
-/*      tete le pointeur de tête                                                                        */
+/* En entree:                                                                                           */
+/*      tete le pointeur de tete                                                                        */
 /*                                                                                                      */
 /* En sortie: Aucune sortie                                                                             */
 /* ---------------------------------------------------------------------------------------------------- */

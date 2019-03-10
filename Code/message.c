@@ -1,4 +1,18 @@
 #include "message.h"
+#include "date.h"
+
+/* ---------------------------------------------------------------------------------------------------- */
+/* Nom du fichier : message.c                                                                           */
+/* Date de creation : 27/02/2018                                                                        */
+/* Auteurs : Julien PASCAL et Fabien SIMONET (G21)                                                      */
+/* Objectif : manipuler les messages                                                                    */
+/* Fonctions :                                                                                          */
+/*  - afficher_messages_non_expires                                                                     */
+/*  - supprimer_messages_obsoletes                                                                      */
+/*  - afficher_messages_si_motif                                                                         */
+/*  - lire_fichier                                                                                      */
+/*  - sauv_fichier                                                                                      */
+/* ---------------------------------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------------------------------- */
 /* afficher_messages_non_expires            Affiche les messages non expires d'une LCH message_t        */
@@ -61,7 +75,7 @@ void afficher_messages_non_expires(message_t* tete)
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
 /* ---------------------------------------------------------------------------------------------------- */
-void supprimer_messages_obsoletes_LCH(message_t** tete)
+void supprimer_messages_obsoletes(message_t** tete)
 {
     message_t     * cour = *tete;
     message_t    ** prec = tete;
@@ -80,7 +94,7 @@ void supprimer_messages_obsoletes_LCH(message_t** tete)
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* afficher_si_motif_LCH                    Affiche les messages contenant un motif                     */
+/* afficher_message_si_motif                    Affiche les messages contenant un motif                     */
 /*                                                                                                      */
 /* En entree:                                                                                           */
 /*      tete le pointeur de tete                                                                        */
@@ -88,7 +102,7 @@ void supprimer_messages_obsoletes_LCH(message_t** tete)
 /*                                                                                                      */
 /* En sortie: Aucune sortie                                                                             */
 /* ---------------------------------------------------------------------------------------------------- */
-void afficher_si_motif_LCH(message_t* tete, char* motif)
+void afficher_messages_si_motif(message_t* tete, char* motif)
 {
     message_t * cour = tete;
     int         nb = 0;
