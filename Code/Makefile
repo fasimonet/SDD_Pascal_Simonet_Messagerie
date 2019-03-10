@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -g -O2
 #===============================
 
 # fichiers .o communs a tous les executables
-COMMON_OBJ = LCH.o date.o
+COMMON_OBJ = LCH.o date.o message.o
 
 # fichier .o relatif a l'executable "manipulation_LCH"
 MANIP_OBJ = manipulation_LCH.o
