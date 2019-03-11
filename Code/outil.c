@@ -30,7 +30,7 @@ int main(int argc, char** argv)
     recuperer_date_courante();
     
     afficher_messages_non_expires(tete);    
-    //supprimer_messages_obsoletes_LCH(&tete);
+    supprimer_messages_obsoletes(&tete);
 
     //supprimer_maillon(&(tete->suiv));
     afficher_LCH(tete);

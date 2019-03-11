@@ -12,6 +12,7 @@
 
 void afficher_messages_non_expires(message_t*);
 void supprimer_messages_obsoletes(message_t**);
+void mettre_a_jour_messages(int old_date_deb, int new_date_deb, message_t** tete);
 void afficher_messages_si_motif(message_t*, char*);
 
 message_t* lire_fichier(char*);

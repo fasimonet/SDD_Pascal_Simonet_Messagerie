@@ -87,10 +87,30 @@ void supprimer_messages_obsoletes(message_t** tete)
         {
             supprimer_maillon_LCH(prec);
         }
-
-        prec = &cour->suiv;
+        else 
+        {
+            prec = &cour->suiv;
+        }
         cour = cour->suiv;
     }
+}
+
+
+void mettre_a_jour_messages(int old_date_deb, int new_date_deb, message_t** tete)
+{
+    message_t   * cour = *tete;
+    
+    while(cour != NULL)
+    {
+        if (cour->date_deb == old_date_deb)
+        {
+            cour->date_deb = new_date_deb;
+        }
+        cour = cour->suiv;
+    }
+    sauv_fichier("maj.txt", *tete);
+    liberer_LCH(*tete);
+    *tete = lire_fichier("maj.txt");
 }
 
 /* ---------------------------------------------------------------------------------------------------- */

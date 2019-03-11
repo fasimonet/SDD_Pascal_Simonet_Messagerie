@@ -22,5 +22,8 @@ int main()
     supprimer_messages_obsoletes(&t);
     afficher_LCH(t);
 
+    mettre_a_jour_messages(20000101, 11111111, &t);
+    afficher_LCH(t);
+
     return 0;
 }
