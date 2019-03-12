@@ -7,7 +7,6 @@
 /* Objectif : manipuler les dates                                                                       */
 /* Fonctions :                                                                                          */
 /*  - recuperer_date_courante                                                                           */
-/*  - afficher_date_courante                                                                            */
 /* ---------------------------------------------------------------------------------------------------- */
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -16,6 +15,21 @@
 /* En entree: Aucune entree                                                                             */                                 
 /*                                                                                                      */      
 /* En sortie: La date courante correctement formattee                                                   */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On recupere la date courante                                                                    */
+/*      On recupere le nombre d'annee que l'on multiplie par 100                                        */
+/*      On lui additionne le nombre de mois puis on multiplie encors une fois par 100                   */
+/*      On lui ajoute le nombre de jours                                                                */     
+/*                                                                                                      */
+/* Lexique                                                                                              */
+/*      timestamp : variable de type time_t issue de la librairie time.h contenant la date et l'heure   */
+/*      courante                                                                                        */
+/*      t : pointeur sur la structure date de la librairie time.h. Cette structure permet de recuperer  */
+/*      des informations sur la date                                                                    */
+/*      annee : entier contenant l'annee en cours                                                       */
+/*      mois : entier contenant le mois en cours                                                        */
+/*      jour : entier contenant le jour en cours                                                        */
 /* ---------------------------------------------------------------------------------------------------- */
 int recuperer_date_courante()
 {
@@ -35,17 +49,4 @@ int recuperer_date_courante()
     date_formatee = (date_formatee*100 + mois)*100 + jour;
 
     return date_formatee;
-}
-
-/* ---------------------------------------------------------------------------------------------------- */
-/* afficher_date_courante                             Affiche la date courante                          */
-/*                                                                                                      */
-/* En entree: Aucune entree                                                                             */                              
-/*                                                                                                      */      
-/* En sortie: Aucune sortie                                                                             */
-/* ---------------------------------------------------------------------------------------------------- */
-void afficher_date_courante()
-{
-    int date = recuperer_date_courante();
-    printf("Date : %d\n", date);
 }

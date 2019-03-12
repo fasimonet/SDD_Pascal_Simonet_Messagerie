@@ -12,6 +12,5 @@
 #include <time.h>
 
 int recuperer_date_courante();
-void afficher_date_courante();
 
 #endif

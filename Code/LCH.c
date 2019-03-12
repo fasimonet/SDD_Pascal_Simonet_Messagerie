@@ -187,6 +187,15 @@ void adj_cell_LCH(message_t **prec, message_t *nouv)
 /*      prec le pointeur vers le pointeur de l'element a supprimer                                      */                                 
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      on recupere l'adresse de l'element a supprimer                                                  */
+/*      on avance le pointeur de pointeur precedent                                                     */
+/*      on libere le texte du message                                                                   */
+/*      on libere le maillon                                                                            */
+/*                                                                                                      */
+/* Lexique                                                                                              */
+/*      cour : pointeur vers l'element a supprimer                                                      */
 /* ---------------------------------------------------------------------------------------------------- */
 void supprimer_maillon_LCH(message_t** prec)
 {
@@ -204,6 +213,18 @@ void supprimer_maillon_LCH(message_t** prec)
 /*      tete le pointeur de tete                                                                        */
 /*                                                                                                      */
 /* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On intialise un poiteur sur la tete                                                             */
+/*      tant que nous sommes dans la liste                                                              */
+/*          On avance la tete d'un element                                                              */
+/*          On libere le texte de l'element pointe par le deuxieme pointeur puis le maillon pointe par  */
+/*          le deuxieme pointeur                                                                        */
+/*          On ramene le deuxieme pointeur sur la tete                                                  */
+/*                                                                                                      */
+/* Lexique                                                                                              */
+/*      cour : pointeur sur les maillons de la liste initialise sur le premier element. Il sert a       */
+/*      parcourir la liste                                                                              */ 
 /* ---------------------------------------------------------------------------------------------------- */
 void liberer_LCH(message_t* tete)
 {
