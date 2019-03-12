@@ -74,6 +74,21 @@ void afficher_messages_non_expires(message_t* tete)
 /*      tete le pointeur vers le pointeur de la tete                                                    */                                 
 /*                                                                                                      */      
 /* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe :                                                                                           */
+/*      On recupere la date courante, on initialise les pointeur courant et precedent                   */
+/*      On parcour la liste                                                                             */
+/*          Si la date de fin de validite est depassee alors                                            */
+/*              on supprime le maillon grace a supprimer_maillon_LCH                                    */
+/*          Sinon                                                                                       */
+/*              on avance le pointeur precedant sur le le pointeur de message suivant du maillon courant*/
+/*      On avance le pointeur courant                                                                   */
+/*                                                                                                      */
+/* Lexique :                                                                                            */
+/*      cour : pointeur sur les maillons de la liste initialise sur le premier element. Il sert a       */
+/*      parcourir la liste                                                                              */
+/*      date_auj :  entier de la forme AAAAMMJJ contenant la date courante                              */
+/*      prec : pointeur sur le pointeur de l'element courant                                            */
 /* ---------------------------------------------------------------------------------------------------- */
 void supprimer_messages_obsoletes(message_t** tete)
 {
@@ -95,6 +110,27 @@ void supprimer_messages_obsoletes(message_t** tete)
     }
 }
 
+/* ---------------------------------------------------------------------------------------------------- */
+/* mettre_a_jour_messages                    met a jour les messages                                    */
+/*                                                                                                      */
+/* En entree:                                                                                           */
+/*      tete le pointeur de tete                                                                        */
+/*      old_date_deb : date de debut initiale a remplacer                                               */
+/*      new_date_deb : nouvelle date de debut a saisir dans les maillons                                */
+/*                                                                                                      */
+/* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe                                                                                             */
+/*      On parcour la liste                                                                             */
+/*          Si la date de debut du message est egale a la date a remplacer en entree                    */
+/*              rempacer l'ancienne date de debut par la nouvelle                                       */
+/*      trier la nouvelle liste obtenue                                                                 */
+/*                                                                                                      */
+/* Lexique                                                                                              */
+/*      cour : pointeur sur les maillons de la liste initialise sur le premier element. Il sert a       */
+/*      parcourir la liste                                                                              */
+/*      maj.txt : fichier temporaire servant a retrier la liste                                         */                                                                       
+/* ---------------------------------------------------------------------------------------------------- */
 
 void mettre_a_jour_messages(int old_date_deb, int new_date_deb, message_t** tete)
 {
@@ -108,19 +144,34 @@ void mettre_a_jour_messages(int old_date_deb, int new_date_deb, message_t** tete
         }
         cour = cour->suiv;
     }
-    sauv_fichier("maj.txt", *tete);
-    liberer_LCH(*tete);
-    *tete = lire_fichier("maj.txt");
+    // Triage de la nouvelle liste
+    sauv_fichier("maj.txt", *tete); // on enregistre la nouvelle liste non triee dans un fichier
+    liberer_LCH(*tete); // on libere la liste 
+    *tete = lire_fichier("maj.txt"); // on lie le fichier. La lecture triera automatiquement la liste 
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
-/* afficher_message_si_motif                    Affiche les messages contenant un motif                     */
+/* afficher_message_si_motif                    Affiche les messages contenant un motif                 */
 /*                                                                                                      */
 /* En entree:                                                                                           */
 /*      tete le pointeur de tete                                                                        */
 /*      motif le motif a respecter                                                                      */
 /*                                                                                                      */
 /* En sortie: Aucune sortie                                                                             */
+/*                                                                                                      */
+/* Principe :                                                                                           */
+/*      On initialise le nombre de message afficher a 0                                                 */
+/*      On parcours la liste                                                                            */
+/*          si le motif est dans le message alors                                                       */
+/*              On incremente le nombre de message afficher                                             */
+/*              On appelle la fonction afficher_maillon_LCH                                             */
+/*      Si aucun message n'a ete affiche alors                                                          */
+/*          renvoyer un message d'erreur                                                                */
+/*                                                                                                      */
+/* Lexique :                                                                                            */
+/*      cour : pointeur sur les maillons de la liste initialise sur le premier element. Il sert a       */
+/*      parcourir la liste                                                                              */
+/*      nb :  entier comptant le nombre de message afficher                                             */
 /* ---------------------------------------------------------------------------------------------------- */
 void afficher_messages_si_motif(message_t* tete, char* motif)
 {
