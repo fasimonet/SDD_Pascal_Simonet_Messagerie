@@ -9,9 +9,8 @@
 
 int main()
 {
-    // teste des fonctions de récupération et d'affichage de date
-    int x;
-    x = recuperer_date_courante();
-    printf("Date : %d\n",x);
+    // Test 1 : recuperer la date courante
+    int date_cour = recuperer_date_courante();
+
     return 0;
 }

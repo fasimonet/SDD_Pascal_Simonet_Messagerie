@@ -9,7 +9,8 @@
 /* Fonctions :                                                                                          */
 /*  - afficher_messages_non_expires                                                                     */
 /*  - supprimer_messages_obsoletes                                                                      */
-/*  - afficher_messages_si_motif                                                                         */
+/*  - afficher_messages_si_motif                                                                        */
+/*  - mettre_a_jour_messages                                                                            */
 /*  - lire_fichier                                                                                      */
 /*  - sauv_fichier                                                                                      */
 /* ---------------------------------------------------------------------------------------------------- */
@@ -144,10 +145,10 @@ void mettre_a_jour_messages(int old_date_deb, int new_date_deb, message_t** tete
         }
         cour = cour->suiv;
     }
-    // Triage de la nouvelle liste
+    // Tri de la nouvelle liste
     sauv_fichier("maj.txt", *tete); // on enregistre la nouvelle liste non triee dans un fichier
     liberer_LCH(*tete); // on libere la liste 
-    *tete = lire_fichier("maj.txt"); // on lie le fichier. La lecture triera automatiquement la liste 
+    *tete = lire_fichier("maj.txt"); // on lit le fichier. La lecture triera automatiquement la liste 
 }
 
 /* ---------------------------------------------------------------------------------------------------- */
@@ -184,7 +185,6 @@ void afficher_messages_si_motif(message_t* tete, char* motif)
     printf("Le motif verifie est : \"%s\"\n\n", motif);
     while (cour != NULL)
     {
-        // Reecrire strstr
         if (strstr(cour->texte, motif))
         {
             nb++;

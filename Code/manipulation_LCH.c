@@ -9,38 +9,64 @@
 
 int main()           
 {
-    // Cas 1 => creer maillon, afficher maillon
-    message_t *nouv_cas1 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !");
-    afficher_maillon_LCH(nouv_cas1);
+    // Test 1 : creer maillon (cas general)
+    message_t *nouv_test1 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !"); 
     
-    // Cas 2 => creer maillon, rech_prec, ajouter dans liste, afficher liste (liste vide initialement)
-    message_t *tete_cas2 = NULL;
-    message_t *nouv_cas2 = creer_maillon_LCH(22220505, 24540909, "Brrr");
-    message_t **prec_cas2 = rech_prec_triee_LCH(22220505, &tete_cas2);
-    adj_cell_LCH(prec_cas2, nouv_cas2);
-    afficher_LCH(tete_cas2);
+    // Test 2 : recherche du precedent lorsque ce dernier est en tete de liste
+    message_t *tete_test2 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !");
+    message_t **prec_test2 = rech_prec_triee_LCH(20160710, &tete_test2);
 
-    // Cas 3 => creer maillon, rech_prec, ajouter dans liste, afficher liste (liste non vide initialement, ajout en tete)
-    message_t *tete_cas3 = NULL;
-    message_t *nouv1_cas3 = creer_maillon_LCH(22220505, 24540909, "Brrr");
-    message_t *nouv2_cas3 = creer_maillon_LCH(11111111, 34561010, "FIRST!!!");   
-    message_t **prec_cas3 = rech_prec_triee_LCH(22220505, &tete_cas3);
+    // Test 3 : recherche du precedent dans le cas général
+    message_t *tete_test3 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !");
+    message_t **prec_test3_1 = rech_prec_triee_LCH(20160710, &tete_test3);
+    message_t *nouv_test3 = creer_maillon_LCH(22220505, 24540909, "Brrr");
+    adj_cell_LCH(prec_test3_1, nouv_test3);
+    message_t **prec_test3_2 = rech_prec_triee_LCH(22220505, &tete_test3);
 
-    adj_cell_LCH(prec_cas3, nouv1_cas3);
-    prec_cas3 = rech_prec_triee_LCH(11111111, &tete_cas3);
-    adj_cell_LCH(prec_cas3, nouv2_cas3);
-    afficher_LCH(tete_cas3);    
+    // Test 4 : ajouter dans liste vide 
+    message_t *tete_test4 = NULL; 
+    message_t *nouv_test4 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !");   
+    message_t **prec = rech_prec_triee_LCH(20160710, &tete_test4);
+    adj_cell_LCH(prec, nouv_test4);
 
-    // Cas 4 => creer maillon, rech_prec, ajouter dans liste, afficher liste (liste non vide initialement, ajout non tete)
-    message_t *tete_cas4 = NULL;
-    message_t *nouv1_cas4 = creer_maillon_LCH(22220505, 24540909, "Brrr");
-    message_t *nouv2_cas4 = creer_maillon_LCH(33330808, 34561010, "plus FIRST!!!");   
-    message_t **prec_cas4 = rech_prec_triee_LCH(22220505, &tete_cas4);
+    // Test 5 : ajouter en tete de liste
+    message_t *tete_test5 = NULL; 
+    message_t *nouv_test5_1 = creer_maillon_LCH(22220505, 24540909, "Brrr");  
+    message_t **prec_test_5_1 = rech_prec_triee_LCH(22220505, &tete_test5);
+    adj_cell_LCH(prec_test_5_1, nouv_test5_1);
+    message_t *nouv_test5_2 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !");
+    message_t **prec_test_5_2 = rech_prec_triee_LCH(20160710, &tete_test5); 
+    adj_cell_LCH(prec_test_5_2, nouv_test5_2);
 
-    adj_cell_LCH(prec_cas4, nouv1_cas4);
-    prec_cas4 = rech_prec_triee_LCH(33330808, &tete_cas4);
-    adj_cell_LCH(prec_cas4, nouv2_cas4);
-    afficher_LCH(tete_cas4);  
-    
+    // Test 6 : ajouter dans une position quelconque
+    message_t *tete_test6 = NULL; 
+    message_t *nouv_test6_1 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !"); 
+    message_t **prec_test_6_1 = rech_prec_triee_LCH(20160710, &tete_test6);
+    adj_cell_LCH(prec_test_6_1, nouv_test6_1);
+    message_t *nouv_test6_2 = creer_maillon_LCH(22220505, 24540909, "Brrr"); 
+    message_t **prec_test_6_2 = rech_prec_triee_LCH(22220505, &tete_test6); 
+    adj_cell_LCH(prec_test_6_2, nouv_test6_2);
+
+    // Test 7 : supprimer maillon dans une liste non vide
+    message_t *tete_test7 = NULL; 
+    message_t *nouv_test7_1 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !"); 
+    message_t **prec_test_7 = rech_prec_triee_LCH(20160710, &tete_test7);
+    adj_cell_LCH(prec_test_7, nouv_test7_1);
+    supprimer_maillon_LCH(prec_test_7);
+
+    // Test 8 : liberer liste vide
+    message_t *tete_test8 = NULL; 
+    liberer_LCH(tete_test8);
+
+    // Test 9 : liberer liste non vide
+    message_t *tete_test9 = NULL; 
+    message_t *nouv_test9_1 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !"); 
+    message_t **prec_test_9_1 = rech_prec_triee_LCH(20160710, &tete_test9);
+    adj_cell_LCH(prec_test_9_1, nouv_test9_1);   
+    message_t *nouv_test9_2 = creer_maillon_LCH(22220505, 24540909, "Brrr"); 
+    message_t **prec_test_9_2 = rech_prec_triee_LCH(22220505, &tete_test9);
+    adj_cell_LCH(prec_test_9_2, nouv_test9_2);  
+    liberer_LCH(tete_test9);
+
     return 0;
 }
