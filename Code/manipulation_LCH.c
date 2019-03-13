@@ -17,9 +17,9 @@ int main()
     message_t **prec_test2 = rech_prec_triee_LCH(20160710, &tete_test2);
 
     // Test 3 : recherche du precedent dans le cas général
-    message_t *tete_test3 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !");
-    message_t **prec_test3_1 = rech_prec_triee_LCH(20160710, &tete_test3);
-    message_t *nouv_test3 = creer_maillon_LCH(22220505, 24540909, "Brrr");
+    message_t *tete_test3 = creer_maillon_LCH(22220505, 24540909, "Brrr");
+    message_t **prec_test3_1 = rech_prec_triee_LCH(22220505, &tete_test3);
+    message_t *nouv_test3 = creer_maillon_LCH(20160710, 20160720, "Félicitation ! Tu as ton BAC !");
     adj_cell_LCH(prec_test3_1, nouv_test3);
     message_t **prec_test3_2 = rech_prec_triee_LCH(22220505, &tete_test3);
 
