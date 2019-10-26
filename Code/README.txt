@@ -1,8 +1,36 @@
-README : Quelques remarques générales
+# FIFO and LIFO librairies
 
-- l'executable main est l'executable demandé dans les consignes de correction du tp, il reprend les fonctions principales du tp.
-- concernant les autres executables, il y en a un par batterie de tests, pour avoir des tests separees par themes 
-- le Makefile automatise la compilation de ces differents executables
-- les warnings ont ete verifies un par un et les warnings restants sont principalement des valeurs de retour de fonctions non utilisees, aucun ne releve d'une erreur de programmation manifeste
+Result of a practical work during our first study year in our engineering school ISIMA (Institut Supérieur d'Informatique et Modélisation de ses Applications). Realised during March 2019. Consists in C libraries implementing chained lists functions and messages manager. 
 
+## Getting Started
 
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+You need a linux shell for the compilation and the launch of the executable program (ex: bash).
+
+### Compilation
+
+Use the Makefile to compile the executable program with the following command :
+
+```
+make
+```
+
+### Program execution
+
+Once the executable program compiled, you will be able to launch him with the following command :
+
+```
+./prog
+```
+
+## Built With
+
+* [C](https://www.gnu.org/software/gnu-c-manual/gnu-c-manual.html) - The language used
+
+## Authors
+
+* **Fabien Simonet** - *IT student at ISIMA school* - [fasimonet](https://github.com/fasimonet)
+* **Julien Pascal** - *IT student at ISIMA school* - [Julien-Pascal](https://github.com/Julien-Pascal)
